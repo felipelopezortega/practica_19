@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); // se inyecta la dependencia mongoose
 
+//se crea un nuevo esquema para ser guardado en la base de datos
 let personSchema = new mongoose.Schema({
     nombre: String,
     edad: Number,
@@ -8,4 +9,5 @@ let personSchema = new mongoose.Schema({
 
 });
 
+//el esquema anteriormente creado se exporta
 module.exports = mongoose.model("Persons", personSchema);

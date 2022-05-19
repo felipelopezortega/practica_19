@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const express = require("express");
+const mongoose = require("mongoose"); //se inyecta la dependencia mongoose
+const express = require("express"); //se inyecta la dependencia express
 const personsRoutes = require("./routes/persons");
 
 mongoose.Promise = global.Promise;
@@ -8,6 +8,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:false}));
 app.use(personsRoutes);
 
+//aquí nos conectamos a nuestra base de datos, introduciendo el código que se nos arroja en mongoos
 mongoose.connect(
     "mongodb+srv://felipe:2336915457@cluster0.xgnn0.mongodb.net/?retryWrites=true&w=majority",
     {useNewUrlParser: true,
@@ -15,6 +16,7 @@ mongoose.connect(
     }
 );
 
+//aquí pintamos algunos mensajes de mongoose dependiendo de si se conecta de manera correcta o incorrecta
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function(){
@@ -22,5 +24,5 @@ db.once("open", function(){
 });
 
 
-
+//se levanta el puerto y se pone en escucha
 app.listen(3000);
